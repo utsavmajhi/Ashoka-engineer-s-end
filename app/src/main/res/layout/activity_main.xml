@@ -9,9 +9,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="388dp"
+        android:layout_width="381dp"
 
-        android:layout_height="295dp"
+        android:layout_height="277dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="match_parent">
 
             <EditText
                 android:id="@+id/lgname"
@@ -70,7 +70,6 @@
                 android:id="@+id/lgbtn"
                 android:layout_width="334dp"
                 android:layout_height="48dp"
-                android:layout_above="@+id/linearLayout"
                 android:layout_below="@+id/lgpass"
                 android:layout_centerHorizontal="true"
 
