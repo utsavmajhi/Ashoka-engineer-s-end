@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/navprofile"
+        android:title="Profile"
+        android:icon="@drawable/ic_action_person"/>
+    <item android:id="@+id/navsettings"
+        android:title="Settings"
+        android:icon="@drawable/ic_action_settings"/>
+    <item android:id="@+id/navlogout"
+        android:title="Logout"
+        android:icon="@drawable/ic_action_exit"/>
+
+
+</menu>

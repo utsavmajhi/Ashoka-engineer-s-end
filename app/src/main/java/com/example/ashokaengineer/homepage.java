@@ -1,12 +1,17 @@
 package com.example.ashokaengineer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,9 +29,10 @@ import java.util.ArrayList;
 
 
 
-public class homepage extends AppCompatActivity implements pooladapter.onitemclicklistener {
+public class homepage extends AppCompatActivity implements pooladapter.onitemclicklistener,NavigationView.OnNavigationItemSelectedListener {
     private Toolbar mtoolbar;
-
+    private DrawerLayout drlay;
+    private NavigationView navview;
     public static final String EXTRA_URL="imageurl";
     public static final String EXTRA_NAME="user";
     public static final String EXTRA_LOCATION="views";
@@ -43,6 +50,9 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
         setContentView(R.layout.activity_homepage);
         mRecyclerView=findViewById(R.id.recyclerpoolview);
         mRecyclerView.setHasFixedSize(true);
+        mtoolbar=findViewById(R.id.toolbar);
+        drlay=findViewById(R.id.drawer);
+        navview=findViewById(R.id.navi);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mpoollist=new ArrayList<>();
 
@@ -92,12 +102,11 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
 
     }
 
-
+//clicking activity of items in recycler view
     @Override
     public void onItemClick(int position) {
         Intent detailIntent=new Intent(homepage.this,detailactivity.class);
         poolitems clickedItem=mpoollist.get(position);
-
         detailIntent.putExtra(EXTRA_URL,clickedItem.getmImageurl());
         detailIntent.putExtra(EXTRA_NAME,clickedItem.getPoolname());
         detailIntent.putExtra(EXTRA_AREA,clickedItem.getArea());
@@ -105,5 +114,26 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
 
         startActivity(detailIntent);
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId())
+        {
+            case R.id.navprofile:{
+                break;
+            }
+            case R.id.navsettings:{
+                break;
+            }
+            case R.id.navlogout:{
+                break;
+            }
+        }
+        menuItem.setCheckable(true);
+        drlay.closeDrawer(GravityCompat.START);
+
+        return true;
     }
 }
