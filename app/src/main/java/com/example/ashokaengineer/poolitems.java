@@ -45,6 +45,16 @@ public class poolitems {
     private String poolname;
     private String area;
     private String location;
+    private String Report;
+    public String getReport() {
+        return Report;
+    }
+
+    public void setReport(String report) {
+        Report = report;
+    }
+
+
 
 
 

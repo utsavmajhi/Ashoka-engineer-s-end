@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,14 @@ public class pooladapter extends RecyclerView.Adapter<pooladapter.poolViewHolder
 
     private Context mContext;
     private ArrayList<poolitems> mpoolitemslist;
+    private onitemclicklistener mListener;
+
+    public interface onitemclicklistener{
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(onitemclicklistener listener){
+        mListener=listener;
+    }
 
     public pooladapter(Context context,ArrayList<poolitems> poollist)
     {
@@ -43,6 +52,7 @@ public class pooladapter extends RecyclerView.Adapter<pooladapter.poolViewHolder
     String poolname=currentitem.getPoolname();
     String poolarea=currentitem.getArea();
     String poollocation=currentitem.getLocation();
+    String poolreport=currentitem.getReport();
 
 
         holder.mpoolname.setText(poolname);
@@ -73,6 +83,21 @@ public class pooladapter extends RecyclerView.Adapter<pooladapter.poolViewHolder
             mpoolname=itemView.findViewById(R.id.pname);
             mlocation=itemView.findViewById(R.id.pooladdresstxt);
             marea=itemView.findViewById(R.id.poolarea);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener!=null)
+                    {
+                        int position=getAdapterPosition();
+                        if(position!=RecyclerView.NO_POSITION)
+                        {
+                            mListener.onItemClick(position);
+
+                        }
+                    }
+                }
+            });
 
         }
     }

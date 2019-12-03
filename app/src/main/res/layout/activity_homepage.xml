@@ -11,9 +11,13 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:title="@string/app_name"
+        app:logo="@mipmap/ic_launcher"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.Toolbar>
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/linearlayout"
@@ -43,7 +47,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         app:cardBackgroundColor="@android:color/background_light"
-        app:cardCornerRadius="30dp"
+        app:cardCornerRadius="25dp"
         app:contentPadding="4dp">
 
         <androidx.recyclerview.widget.RecyclerView
