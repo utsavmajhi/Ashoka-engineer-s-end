@@ -19,8 +19,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
-        android:layout_width="384dp"
-        android:layout_height="217dp"
+        android:layout_width="382dp"
+        android:layout_height="168dp"
         android:layout_marginTop="10dp"
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,8 +126,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="364dp"
-        android:layout_height="206dp"
+        android:layout_width="380dp"
+        android:layout_height="320dp"
         android:layout_marginTop="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,14 +152,15 @@
 
             <TextView
                 android:id="@+id/dreporttext"
-                android:layout_width="333dp"
-                android:layout_height="135dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="348dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="16dp"
                 android:scrollbars="vertical"
                 android:text="Crops harvested:Tomato\nWeekly Required Fund:Rs 20000\nPrevious Week Data:8kg of crop has been harvested\nSuggestions: Increase Manure content\nthth\n\yht\nrtttyht\nthtyh\nrthtyhy\ntrhtyhty\nthty\jjhkkkkkkkkkkkkkkkk\njhhhhhhhhhhhhhhhhhhhh"
+                android:textSize="18sp"
                 app:fontFamily="sans-serif-condensed-medium"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
+                app:layout_constraintHorizontal_bias="0.517"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailreport" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -170,10 +171,9 @@
         android:id="@+id/textInputLayout"
         android:layout_width="385dp"
         android:layout_height="67dp"
-        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/detreposubbtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/denewreporttext"
@@ -186,13 +186,14 @@
         android:id="@+id/detreposubbtn"
         android:layout_width="276dp"
         android:layout_height="44dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/buttonui"
         android:onClick="onclickreportbtn"
         android:text="Submit"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
