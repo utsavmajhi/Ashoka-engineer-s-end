@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back5"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -58,7 +58,7 @@
                 android:drawablePadding="5dp"
                 android:drawableTint="#000000"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -75,10 +75,10 @@
 
 
                 android:layout_marginTop="48dp"
-                android:background="@drawable/buttonui"
-                android:fontFamily="sans-serif-black"
+
+                android:fontFamily="serif"
                 android:onClick="lgclickbtn"
-                android:text="Login"
+                android:text="@string/login"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,11 +88,22 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="420dp"
+        android:layout_height="241dp"
+        android:layout_marginBottom="548dp"
+        android:src="@drawable/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
         android:id="@+id/imageView2"
         android:layout_width="158dp"
         android:layout_height="110dp"
-        android:layout_marginBottom="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:layout_marginBottom="444dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

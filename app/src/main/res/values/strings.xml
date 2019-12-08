@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AshokaEngineer</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="authorised_pools">Authorised Pools</string>
+    <string name="type_your_report">Type Your Report</string>
 </resources>

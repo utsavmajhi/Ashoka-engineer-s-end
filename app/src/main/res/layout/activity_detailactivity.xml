@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back5"
+    android:background="#e3e8e6"
     tools:context=".detailactivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary"
+        android:background="#D44638"
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.appcompat.widget.Toolbar>
@@ -179,15 +179,17 @@
             android:id="@+id/denewreporttext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Type Your Report" />
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:hint="@string/type_your_report" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/detreposubbtn"
         android:layout_width="276dp"
+        android:background="#bbc8c3"
         android:layout_height="44dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/buttonui"
         android:onClick="onclickreportbtn"
         android:text="Submit"
         android:textAllCaps="false"
