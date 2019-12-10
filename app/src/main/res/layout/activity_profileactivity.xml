@@ -14,8 +14,16 @@
             android:id="@+id/rellay1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#e3e8e6"
+            android:background="@color/md_red_900"
             android:paddingBottom="20dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/protoolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleTextColor="@color/md_red_900">
+
+            </androidx.appcompat.widget.Toolbar>
 
             <RelativeLayout
                 android:id="@+id/imgUser"
@@ -47,7 +55,7 @@
 
                 android:fontFamily="sans-serif-light"
                 android:text="Nick Fury"
-                android:textColor="@color/black"
+                android:textColor="@color/material_drawer_background"
                 android:textSize="32sp" />
 
 
@@ -58,11 +66,10 @@
                 android:layout_below="@+id/tv_name"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="sans-serif"
-                android:text="Investor "
+                android:text="Engineer"
                 android:textAllCaps="true"
-                android:textColor="@color/address"
+                android:textColor="@color/material_drawer_background"
                 android:textSize="14sp" />
-
 
 
         </RelativeLayout>
@@ -224,7 +231,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ratings"
+                        android:text="Ratings(change)"
                         android:textColor="@color/headings"
                         android:textSize="13sp" />
 

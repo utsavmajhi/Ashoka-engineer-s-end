@@ -27,6 +27,11 @@ public class detailactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailactivity);
+        mtoolbar=findViewById(R.id.toolbar);
+
+
+        setSupportActionBar(mtoolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         derepottext=(TextView)findViewById(R.id.dreporttext);
         derepottext.setMovementMethod(new ScrollingMovementMethod());

@@ -65,7 +65,7 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
         //NAVIGATION BAR DIRECTLY IMPORTED FROM MIKEPENZ
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.drawable.j)
+                .withHeaderBackground(R.drawable.header)
                 .addProfiles(
                         new ProfileDrawerItem().withName("Utsav Majhi").withEmail("deadsnipper@gmail.com").withIcon(getResources().getDrawable(R.drawable.propic2))
                 )
