@@ -46,7 +46,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/proname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgUser"
@@ -63,7 +63,7 @@
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_name"
+                android:layout_below="@+id/proname"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="sans-serif"
                 android:text="Engineer"
@@ -146,7 +146,7 @@
                         android:textSize="13sp" />
 
                     <TextView
-                        android:id="@+id/proname"
+                        android:id="@+id/proemail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -61,13 +62,26 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
         mRecyclerView=findViewById(R.id.recyclerpoolview);
         mRecyclerView.setHasFixedSize(true);
         mtoolbar=findViewById(R.id.toolbar);
+
+        //get shared prefrences parameters
+
+        SharedPreferences sharedPreferences=getSharedPreferences("Secrets",MODE_PRIVATE);
+        String currentusername=sharedPreferences.getString("username","");
+        String currentemail=sharedPreferences.getString("email","");
+        String currentph=sharedPreferences.getString("phone","");
+        String currentaadhar=sharedPreferences.getString("aadhar","");
+        String currenttoken=sharedPreferences.getString("token","");
+
+        //get shared preferences end
+
+
        // drlay=findViewById(R.id.drawer);
         //NAVIGATION BAR DIRECTLY IMPORTED FROM MIKEPENZ
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Utsav Majhi").withEmail("deadsnipper@gmail.com").withIcon(getResources().getDrawable(R.drawable.propic2))
+                        new ProfileDrawerItem().withName(currentusername).withEmail(currentemail).withIcon(getResources().getDrawable(R.drawable.propic2))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -112,9 +126,19 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
                                 startActivity(p1);
                                 break;
                             case 2:
+
                                 Toast.makeText(homepage.this, "Logout", Toast.LENGTH_SHORT).show();
+                                //during logout
+                                //clear shared preferences
+                                SharedPreferences pref = getApplicationContext().getSharedPreferences("Secrets", MODE_PRIVATE);
+                                SharedPreferences.Editor editor=pref.edit();
+                                editor.clear();
+                                editor.apply();
+                                //
                                 startActivity(new Intent(homepage.this,MainActivity.class));
+                                finish();
                                 break;
+                            //during logout activity ends
 
 
                         }
