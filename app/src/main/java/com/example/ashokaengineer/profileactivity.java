@@ -3,6 +3,7 @@ package com.example.ashokaengineer;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -22,6 +23,9 @@ public class profileactivity extends AppCompatActivity {
         profileemail=findViewById(R.id.proemail);
         profileaadhar=findViewById(R.id.proaadhar);
         pronoauthpools=findViewById(R.id.pronumpools);
+
+        Intent intent=getIntent();
+        String nofauthpools=intent.getStringExtra("noofauthpool");
 
 
 
@@ -44,6 +48,7 @@ public class profileactivity extends AppCompatActivity {
         profileemail.setText(currentemail);
         profileaadhar.setText(currentaadhar);
         profilephn.setText(currentph);
+        pronoauthpools.setText(nofauthpools);
 
 
 

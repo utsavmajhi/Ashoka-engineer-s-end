@@ -2,12 +2,30 @@ package com.example.ashokaengineer;
 
 public class poolitems {
 
-    public String getmImageurl() {
-        return mImageurl;
+
+    private String poolid;
+    private String poolname;
+    private String totalivestment;
+    private String location;
+    private String Report;
+    private String description;
+
+    public poolitems(String poolid, String poolname, String totalivestment, String location, String report, String description, String engineerid) {
+        this.poolid = poolid;
+        this.poolname = poolname;
+        this.totalivestment = totalivestment;
+        this.location = location;
+        Report = report;
+        this.description = description;
+        this.engineerid = engineerid;
     }
 
-    public void setmImageurl(String mImageurl) {
-        this.mImageurl = mImageurl;
+    public String getPoolid() {
+        return poolid;
+    }
+
+    public void setPoolid(String poolid) {
+        this.poolid = poolid;
     }
 
     public String getPoolname() {
@@ -18,12 +36,12 @@ public class poolitems {
         this.poolname = poolname;
     }
 
-    public String getArea() {
-        return area;
+    public String getTotalivestment() {
+        return totalivestment;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setTotalivestment(String totalivestment) {
+        this.totalivestment = totalivestment;
     }
 
     public String getLocation() {
@@ -34,18 +52,6 @@ public class poolitems {
         this.location = location;
     }
 
-    public poolitems(String mImageurl, String poolname, String area, String location) {
-        this.mImageurl = mImageurl;
-        this.poolname = poolname;
-        this.area = area;
-        this.location = location;
-    }
-
-    private String mImageurl;
-    private String poolname;
-    private String area;
-    private String location;
-    private String Report;
     public String getReport() {
         return Report;
     }
@@ -54,8 +60,27 @@ public class poolitems {
         Report = report;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getEngineerid() {
+        return engineerid;
+    }
+
+    public void setEngineerid(String engineerid) {
+        this.engineerid = engineerid;
+    }
+
+    private String engineerid;
+    }
 
 
 
 
-}
+
+

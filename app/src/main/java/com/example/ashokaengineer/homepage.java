@@ -1,28 +1,20 @@
 package com.example.ashokaengineer;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.navigation.NavigationView;
+import com.example.ashokaengineer.Authorisedpoolsmodel.Getauthpoolformat;
+import com.example.ashokaengineer.Authorisedpoolsmodel.Pool;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -32,28 +24,26 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class homepage extends AppCompatActivity implements pooladapter.onitemclicklistener {
     private Toolbar mtoolbar;
    // private DrawerLayout drlay;
 
-    public static final String EXTRA_URL="imageurl";
-    public static final String EXTRA_NAME="user";
-    public static final String EXTRA_LOCATION="views";
-    //added extra datas for manipulating later(report is not initialised currently)
-    public static final String EXTRA_REPORT="imageurl";
-    public  static final String EXTRA_AREA="imageHeight";
+
 
     private RecyclerView mRecyclerView;
     private pooladapter mpoolAdapter;
     private ArrayList<poolitems> mpoollist;
+    public static String storenopool;
     private RequestQueue mRequestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +112,7 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
                             case 1:
                                 //pass token for getting user details
                                 Intent p1=new Intent(homepage.this,profileactivity.class);
+                                p1.putExtra("noofauthpool",storenopool);
                                 //pass the token or required details
                                 startActivity(p1);
                                 break;
@@ -158,7 +149,16 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
 
     private void parseJSON()
     {
+        SharedPreferences sharedPreferences=getSharedPreferences("Secrets",MODE_PRIVATE);
+        String currentusername=sharedPreferences.getString("username","");
+        String currentemail=sharedPreferences.getString("email","");
+        String currentph=sharedPreferences.getString("phone","");
+        String currentaadhar=sharedPreferences.getString("aadhar","");
+        String currenttoken=sharedPreferences.getString("token","");
+
+        //get shared preferences end
         //JSON URL (NOW ITS A DUMMY)
+       /*
         String url="https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -194,6 +194,48 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
         });
         mRequestQueue.add(request);
 
+        */
+
+        Retrofit.Builder builder=new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:5000/")//change it afterwards when everthing is hosted
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit=builder.build();
+        ApiInterface apiInterface=retrofit.create(ApiInterface.class);
+        Call<Getauthpoolformat> call=apiInterface.getauthpools(currenttoken);
+        call.enqueue(new Callback<Getauthpoolformat>() {
+            @Override
+            public void onResponse(Call<Getauthpoolformat> call, Response<Getauthpoolformat> response) {
+                if(response.isSuccessful())
+                {
+                    List<Pool> authpool=response.body().getPools();
+                    storenopool= String.valueOf(authpool.size());
+                    for(int i=0;i<authpool.size();i++)
+                    {
+                        String totalinvest= String.valueOf(authpool.get(i).getTotalInvestment());
+                        String poolname=authpool.get(i).getName();
+                        String poollocation=authpool.get(i).getLocation();
+                        String poolid=authpool.get(i).getId();
+                        String pooldescrip=authpool.get(i).getDescription();
+                        String poolenginnerid=authpool.get(i).getEngineerId();
+                        String report=null;
+
+                        mpoollist.add(new poolitems(poolid,poolname,totalinvest,poollocation,report,pooldescrip,poolenginnerid));
+                    }
+                    mpoolAdapter = new pooladapter(homepage.this, mpoollist);
+                    mRecyclerView.setAdapter(mpoolAdapter);
+                    mpoolAdapter.setOnItemClickListener(homepage.this);
+                }
+                else
+                {
+                    Toast.makeText(homepage.this, "Error:"+response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Getauthpoolformat> call, Throwable t) {
+                Toast.makeText(homepage.this, "Error:"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -202,11 +244,8 @@ public class homepage extends AppCompatActivity implements pooladapter.onitemcli
     public void onItemClick(int position) {
         Intent detailIntent=new Intent(homepage.this,detailactivity.class);
         poolitems clickedItem=mpoollist.get(position);
-        detailIntent.putExtra(EXTRA_URL,clickedItem.getmImageurl());
-        detailIntent.putExtra(EXTRA_NAME,clickedItem.getPoolname());
-        detailIntent.putExtra(EXTRA_AREA,clickedItem.getArea());
-        detailIntent.putExtra(EXTRA_LOCATION,clickedItem.getLocation());
-
+        detailIntent.putExtra("ID_EXTRA", new String[] {clickedItem.getPoolname(),clickedItem.getLocation(),clickedItem.getTotalivestment(),clickedItem.getDescription(),clickedItem.getEngineerid(),clickedItem.getPoolid()});
+        //poolname,poollocation,poolinvestments,pooldescription,poolengineerid,poolid
         startActivity(detailIntent);
 
     }

@@ -68,7 +68,7 @@
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/poolimage"
         android:layout_toRightOf="@+id/poolimage"
-        android:text="Area of Land:"
+        android:text="Total Investments:"
         android:textStyle="bold" />
 
     <TextView
