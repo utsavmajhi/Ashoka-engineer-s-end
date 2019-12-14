@@ -13,10 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ashokaengineer.newreportsubmitmodels.Getreportsubmitformat;
+import com.example.ashokaengineer.newreportsubmitmodels.Sendreportformat;
 import com.squareup.picasso.Picasso;
 
-import java.security.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class detailactivity extends AppCompatActivity {
     private Toolbar mtoolbar;
-    private TextView derepottext;
+    String temp = "";
+    String timedate="";
+    private TextView showinreport;
     public EditText reporttext;
     private EditText reporttitle;
     //getting values from previous page or recycler viewer like poolname,area,location
@@ -44,12 +48,12 @@ public class detailactivity extends AppCompatActivity {
         String pldescription=intent.getStringArrayExtra("ID_EXTRA")[3];
         String plengineerid=intent.getStringArrayExtra("ID_EXTRA")[4];
         String plpoolid=intent.getStringArrayExtra("ID_EXTRA")[5];
-        Toast.makeText(this, plpoolid, Toast.LENGTH_SHORT).show();
+
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        derepottext=(TextView)findViewById(R.id.dreporttext);
-        derepottext.setMovementMethod(new ScrollingMovementMethod());
+        showinreport=(TextView)findViewById(R.id.dreporttext);
+        showinreport.setMovementMethod(new ScrollingMovementMethod());
 
 
         //connecting id of detailactivity to detail.java
@@ -73,7 +77,57 @@ public class detailactivity extends AppCompatActivity {
         //pool member has not been initialised properly please see this
         poolMember.setText(pldescription);
 
+        poolreport();
 
+
+
+
+    }
+
+    //reports showing in report section
+    private void poolreport() {
+
+        Intent intent=getIntent();
+        String plpoolid=intent.getStringArrayExtra("ID_EXTRA")[5];
+        SharedPreferences sharedPreferences=getSharedPreferences("Secrets",MODE_PRIVATE);
+        String currenttoken=sharedPreferences.getString("token","");
+
+
+        Retrofit.Builder builder=new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:5000/")//change it afterwards when everthing is hosted
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit=builder.build();
+        ApiInterface apiInterface=retrofit.create(ApiInterface.class);
+        Call<Getpoolreportformat> call=apiInterface.getpoolreports(currenttoken,plpoolid);
+        call.enqueue(new Callback<Getpoolreportformat>() {
+            @Override
+            public void onResponse(Call<Getpoolreportformat> call, Response<Getpoolreportformat> response) {
+                if(response.isSuccessful())
+                {
+                    List<Report> poolreport=response.body().getReports();
+                    for(int i=poolreport.size()-1;i>=0;i--)
+                    {
+                        double time=poolreport.get(i).getTimestamp();
+                        Date date = new Date((long) time);
+                        timedate= String.valueOf(date);
+
+                       temp+=timedate+"\nTitle:"+poolreport.get(i).getTitle()+"\n"+"Description:"+poolreport.get(i).getDescription()+"\n"+"\n"+"\n";
+                       showinreport.append(temp);
+                       temp="";
+                       timedate="";
+                    }
+                }
+                else
+                {
+                    Toast.makeText(detailactivity.this, "Error:"+response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Getpoolreportformat> call, Throwable t) {
+                Toast.makeText(detailactivity.this, "Error:"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -124,7 +178,7 @@ public class detailactivity extends AppCompatActivity {
                         Date date = new Date((long) time);
                         String desp=response.body().getReport().getDescription();
                         String m= String.valueOf(date);
-
+                       // Toast.makeText(detailactivity.this,m, Toast.LENGTH_SHORT).show();
 
                     }
                     else

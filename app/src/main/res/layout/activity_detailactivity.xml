@@ -15,7 +15,7 @@
         android:background="#e3e8e6"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Ashoka Engineer"
-        app:titleTextColor="#e3e8e6">
+        app:titleTextColor="@color/black">
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -23,7 +23,6 @@
         android:id="@+id/cardView3"
         android:layout_width="382dp"
         android:layout_height="168dp"
-        app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -130,10 +129,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="379dp"
-        android:layout_height="271dp"
-        android:layout_marginTop="14dp"
-        app:cardCornerRadius="25dp"
+        android:layout_width="382dp"
+        android:layout_height="245dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView3">
@@ -157,12 +154,10 @@
 
             <TextView
                 android:id="@+id/dreporttext"
-                android:layout_width="348dp"
-                android:layout_height="230dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="359dp"
+                android:layout_height="190dp"
                 android:layout_marginBottom="10dp"
                 android:scrollbars="vertical"
-                android:text="Crops harvested:Tomato\nWeekly Required Fund:Rs 20000\nPrevious Week Data:8kg of crop has been harvested\nSuggestions: Increase Manure content\nthth\n\yht\nrtttyht\nthtyh\nrthtyhy\ntrhtyhty\nthty\jjhkkkkkkkkkkkkkkkk\njhhhhhhhhhhhhhhhhhhhh"
                 android:textSize="18sp"
                 app:fontFamily="sans-serif-condensed-medium"
                 app:layout_constraintBottom_toBottomOf="parent"

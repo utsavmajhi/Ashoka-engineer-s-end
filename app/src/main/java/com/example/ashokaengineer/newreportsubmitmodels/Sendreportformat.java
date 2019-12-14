@@ -1,5 +1,5 @@
 
-package com.example.ashokaengineer;
+package com.example.ashokaengineer.newreportsubmitmodels;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
